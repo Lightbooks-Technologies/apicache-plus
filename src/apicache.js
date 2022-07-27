@@ -637,7 +637,7 @@ function ApiCache() {
       (cachedEncoding === 'identity' ||
         (noOtherMiddlewareMayWantToChangeCompression &&
           !CACHE_CONTROL_NO_TRANSFORM_REGEX.test(headers['cache-control'] || ''))) &&
-      requestAccepts.encodings(cachedEncoding)
+      requestAccepts.encodings(cachedEncoding) && cachedEncoding !== 'br'
     ) {
       // Doing response.writeHead(cacheObject.status || 200, headers)
       // can make writeHead patch from some compression middlewares fail
